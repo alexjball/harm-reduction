@@ -33,4 +33,17 @@ Julia Newhall -- [jnewhall@revere.org](jnewhall@revere.org)
 
 ### Github Setup
 
-//TODO 
+1. Fork this project
+2. Clone this project
+3. Set up the upstream
+4. Install Node and dependencies
+5. Create a feature branch, open a PR, and merge into cfb/master
+
+### Development Deployment
+
+You can test out your changes on your own fork and enable CI/CD with these steps:
+
+1. Create a new Firebase project
+2. Enable Travis CI on your fork
+3. Generate a Firebase token with firebase login:ci
+4. Create Travis environment variables
