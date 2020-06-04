@@ -1,4 +1,3 @@
-# Harm Reduction
 
 [![Build Status](https://travis-ci.org/codeforboston/harm-reduction.svg?branch=master)](https://travis-ci.org/codeforboston/harm-reduction)
 
