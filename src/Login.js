@@ -37,7 +37,14 @@ const LoginForm = () => {
     update({ isSigningIn: true });
     auth
       .signInWithEmailAndPassword(state.email, state.password)
-      .catch(({ code }) => update({ error: getErrorMessage(code) }))
+      .catch(({ code }) => update({ error: getLoginErrorMessage(code) }))
+      .finally(() => update({ isSigningIn: false }));
+  };
+
+  const register = () => {
+    auth
+      .createUserWithEmailAndPassword(state.email, state.password)
+      .catch(({ code }) => update({ error: getRegistrationErrorMessage(code) }))
       .finally(() => update({ isSigningIn: false }));
   };
 
@@ -90,11 +97,12 @@ const LoginForm = () => {
           }}
         />
       )}
+      <Button onClick={register}>Register</Button>
     </Form>
   );
 };
 
-const getErrorMessage = code => {
+const getLoginErrorMessage = code => {
   switch (code) {
     case 'auth/invalid-email':
       return { email: 'Invalid email' };
@@ -104,6 +112,21 @@ const getErrorMessage = code => {
       return { email: 'User not found' };
     case 'auth/wrong-password':
       return { password: 'Wrong password' };
+    default:
+      return { other: 'Something went wrong. Please try again later.' };
+  }
+};
+
+const getRegistrationErrorMessage = code => {
+  switch (code) {
+    case 'auth/email-already-in-use':
+      return { email: 'Email already in use' };
+    case 'auth/invalid-email':
+      return { email: 'Invalid email' };
+    case 'auth/operation-not-allowed':
+      return { email: 'New accounts not allowed' };
+    case 'auth/weak-password':
+      return { password: 'Password is too weak' };
     default:
       return { other: 'Something went wrong. Please try again later.' };
   }
