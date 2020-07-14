@@ -1,4 +1,4 @@
-export { db, auth, EmailAuthProvider } from './Firebase';
+export { db, auth } from './Firebase';
 export {
   addParticipant,
   addIncident,
